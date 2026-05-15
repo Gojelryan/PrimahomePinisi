@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom Tailwind Configuration for specific colors if needed -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sidebar-bg': '#313645',
+                        'sidebar-active': '#42485a',
+                        'bg-light': '#f3f4f6',
+                        'card-bg': '#ffffff',
+                        'primary-blue': '#62b5e5',
+                        'primary-green': '#5cd65c',
+                        'primary-orange': '#fbb063',
+                        'primary-red': '#e86e74',
+                        'light-blue': '#d9f1fa',
+                        'light-green': '#d1f7e8',
+                        'light-red': '#ffe0e0',
+                        'chart-blue': '#4a90e2',
+                        'prima-teal': '#0da282',
+                        'prima-emerald': '#64d165',
+                        'prima-lime': '#aee82e',
+                        'prima-orange': '#fdc206',
+                        'prima-charcoal': '#232d43',
+                        'prima-gray': '#bac8d3',
+                        
+                    },
+                    fontFamily: {
+                        sans: ['Lexend', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-bg-light text-gray-800 flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-sidebar-bg text-white hidden md:flex flex-col flex-shrink-0 relative z-20">
+        <div class="p-6 pt-10">
+            <!-- Active Menu Item -->
+            <div class="bg-sidebar-active border border-gray-600 rounded-lg p-3 flex items-center gap-3 cursor-pointer">
+                <i class="ph ph-squares-four text-xl"></i>
+                <span class="font-medium">Dashboard Admin</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col h-screen overflow-y-auto relative z-10">
+        
+        <!-- Header -->
+        <header class="flex justify-end items-center p-6 pb-2 sticky top-0 bg-bg-light/10 backdrop-blur-[30px] z-30">
+            <!-- User Profile Button -->
+            <button class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-gray-200 hover:bg-gray-50 transition">
+                <i class="ph ph-user-circle text-2xl text-gray-600"></i>
+                <span class="font-medium text-gray-700">Admin</span>
+            </button>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="p-6 pt-4 max-w-[1600px] mx-auto w-full space-y-6">
+
+            <!-- Top Row: Main Summary Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+                
+                <!-- Card 1: Total Customer -->
+                <div class="flex flex-col gap-4">
+                    <div class="bg-prima-emerald rounded-[24px] p-5 text-white flex items-center shadow-sm">
+                        <div class="p-2 mr-3">
+                            <i class="ph ph-users-three text-4xl opacity-100"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium opacity-90">Total Customer</p>
+                            <h2 class="text-3xl font-bold mt-1">3.012</h2>
+                        </div>
+                    </div>
+                    <!-- Subcards Customer -->
+                    <div class="grid grid-cols-2 gap-4 h-full">
+                        <div class="bg-white rounded-[24px] p-4 shadow-sm flex items-center gap-3">
+                            <i class="ph ph-buildings text-prima-charcoal text-2xl"></i>
+                            <div>
+                                <p class="text-xs text-gray-500 font-medium">Corporate</p>
+                                <p class="text-lg font-bold">678</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-[24px] p-4 shadow-sm flex items-center gap-3">
+                            <i class="ph ph-house text-prima-teal text-2xl"></i>
+                            <div>
+                                <p class="text-xs text-gray-500 font-medium">Retail</p>
+                                <p class="text-lg font-bold">2.334</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Total Staff -->
+                <div class="flex flex-col gap-4">
+                    <div class="bg-prima-charcoal rounded-[24px] p-5 text-white flex items-center shadow-sm">
+                        <div class="p-2 mr-3">
+                            <i class="ph ph-user-list text-4xl opacity-90"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium opacity-90">Total Staff</p>
+                            <h2 class="text-3xl font-bold mt-1">112</h2>
+                        </div>
+                    </div>
+                    <!-- Subcards Staff -->
+                    <div class="grid grid-cols-2 gap-4 h-full">
+                        <div class="bg-light-green rounded-[24px] p-4 shadow-sm flex flex-col justify-center items-center">
+                            <p class="text-xs text-gray-600 font-medium mb-1">Hadir</p>
+                            <p class="text-2xl font-bold text-gray-800">103</p>
+                        </div>
+                        <div class="bg-light-red rounded-[24px] p-4 shadow-sm flex flex-col justify-center items-center">
+                            <p class="text-xs text-gray-600 font-medium mb-1">Tidak Hadir</p>
+                            <p class="text-2xl font-bold text-gray-800">9</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Total Pekerjaan -->
+                <div class="flex flex-col gap-4">
+                    <div class="bg-prima-lime rounded-[24px] p-5 text-white flex items-center shadow-sm">
+                        <div class="p-2 mr-3">
+                            <i class="ph ph-file-text text-4xl opacity-90"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium opacity-90">Total Pekerjaan Hari ini</p>
+                            <h2 class="text-3xl font-bold mt-1">456</h2>
+                        </div>
+                    </div>
+                    <!-- Subcards Pekerjaan -->
+                    <div class="grid grid-cols-2 gap-4 h-full">
+                        <div class="bg-white rounded-[24px] p-4 shadow-sm flex flex-col justify-between">
+                            <div class="flex items-center gap-2 mb-2">
+                                <i class="ph-fill ph-check-circle text-prima-lime text-lg"></i>
+                                <span class="text-xs font-medium text-gray-700">selesai</span>
+                            </div>
+                            <div class="text-center mt-2">
+                                <p class="text-2xl font-bold">300</p>
+                                <p class="text-[10px] text-gray-500 mt-1">65.79%</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-[24px] p-4 shadow-sm flex flex-col justify-between">
+                            <div class="flex items-center gap-2 mb-2">
+                                <i class="ph-fill ph-clock text-prima-orange text-lg"></i>
+                                <span class="text-xs font-medium text-gray-700">On Progress</span>
+                            </div>
+                            <div class="text-center mt-2">
+                                <p class="text-2xl font-bold">156</p>
+                                <p class="text-[10px] text-gray-500 mt-1">34.21%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Customer Menunggak -->
+                <div class="flex flex-col bg-white rounded-[24px] shadow-sm overflow-hidden h-full">
+                    <div class="bg-prima-orange p-5 text-white flex items-center shadow-sm">
+                        <div class="p-2 mr-3">
+                            <i class="ph ph-receipt text-4xl opacity-90"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium opacity-90">Customer Menunggak</p>
+                            <h2 class="text-3xl font-bold mt-1">123</h2>
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-center">
+                        <p class="text-sm text-gray-600 mb-1">Total Outstanding</p>
+                        <h3 class="text-2xl font-bold text-gray-900">Rp 25,707,000</h3>
+                    </div>
+                    <div class="border-t border-gray-100 p-4">
+                        <a href="#" class="flex justify-between items-center text-sm font-medium text-gray-700 hover:text-gray-900 w-full">
+                            Lihat Detail
+                            <i class="ph ph-caret-right text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Middle Row: Charts -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                
+                <!-- Line Chart: Performa Kenaikan Pelanggan -->
+                <div class="bg-white rounded-[24px] shadow-xl shadow-[#efefef] p-6 lg:col-span-3 flex flex-col">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold text-gray-800">Performa Kenaikan Pelanggan</h3>
+                        <div class="bg-gray-50 border border-gray-100 rounded-[12px] p-1 flex text-sm">
+                            <button class="px-3 py-1 rounded-md text-gray-500 hover:text-gray-900 font-medium">Hari</button>
+                            <button class="px-3 py-1 rounded-md text-gray-500 hover:text-gray-900 font-medium">Minggu</button>
+                            <button class="px-3 py-1 rounded-[10px] bg-prima-charcoal text-white font-medium shadow-sm">Bulan</button>
+                        </div>
+                    </div>
+                    <div class="relative flex-1 w-full min-h-[260px]">
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Total Pelanggan Summary -->
+                <div class="bg-white rounded-[24px] shadow-xl shadow-[#efefef] p-6 flex flex-col justify-center lg:col-span-1">
+                    <p class="text-sm text-gray-600 mb-2">Total Pelanggan</p>
+                    <div class="flex items-center gap-3 mb-8">
+                        <h2 class="text-[2.5rem] leading-none font-bold text-gray-900">3.012</h2>
+                        <div class="flex items-center gap-1 bg-prima-lime text-prima-charcoal px-2 py-1 rounded-md text-sm font-bold">
+                            <i class="ph-bold ph-arrow-up"></i>
+                            <span>45,6%</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-auto">dibandingkan periode sebelumnya</p>
+                </div>
+            </div>
+
+            <!-- Bottom Row -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <!-- Donut Chart: Kategori Gangguan -->
+                <div class="bg-white rounded-[24px] shadow-xl shadow-[#efefef] p-6 lg:col-span-1">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-6">Kategori Gangguan</h3>
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                        <div class="relative w-40 h-40">
+                            <canvas id="donutChart"></canvas>
+                        </div>
+                        <div class="flex flex-col gap-3 w-full md:w-auto">
+                            <!-- Legend Items -->
+                            <div class="flex justify-between items-center text-sm">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-sm bg-[#5ebcf6]"></div>
+                                    <span class="font-medium text-gray-700 text-xs">Internet Down</span>
+                                </div>
+                                <span class="text-gray-500 text-xs ml-4">37,5% (16)</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-sm bg-[#f9f257]"></div>
+                                    <span class="font-medium text-gray-700 text-xs">Wifi Bermasalah</span>
+                                </div>
+                                <span class="text-gray-500 text-xs ml-4">12,5% (10)</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-sm bg-[#ef4b4b]"></div>
+                                    <span class="font-medium text-gray-700 text-xs">Koneksi Putus</span>
+                                </div>
+                                <span class="text-gray-500 text-xs ml-4">12,5% (5)</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-sm bg-[#c479f3]"></div>
+                                    <span class="font-medium text-gray-700 text-xs">Kendala Akses Web</span>
+                                </div>
+                                <span class="text-gray-500 text-xs ml-4">37,5% (22)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table: Customer Menunggak List -->
+                <div class="bg-white rounded-[24px] shadow-xl shadow-[#efefef] p-6 lg:col-span-2 overflow-hidden flex flex-col">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Customer Menunggak</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-gray-700">
+                            <thead class="text-xs text-gray-900 bg-white border-b border-gray-300">
+                                <tr>
+                                    <th scope="col" class="py-3 px-2 font-semibold">Pelanggan</th>
+                                    <th scope="col" class="py-3 px-2 font-semibold">Jenis</th>
+                                    <th scope="col" class="py-3 px-2 font-semibold">ID Pelanggan</th>
+                                    <th scope="col" class="py-3 px-2 font-semibold">Tunggakan</th>
+                                    <th scope="col" class="py-3 px-2 font-semibold">Jatuh Tempo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white border-b border-gray-100">
+                                    <td class="py-3 px-2 font-bold">CV Adobe Illustrator</td>
+                                    <td class="py-3 px-2">Corporate</td>
+                                    <td class="py-3 px-2">P004992</td>
+                                    <td class="py-3 px-2">Rp 8.000.000</td>
+                                    <td class="py-3 px-2">21 Maret 2026</td>
+                                </tr>
+                                <tr class="bg-white border-b border-gray-100">
+                                    <td class="py-3 px-2 font-bold">PT OpenAI</td>
+                                    <td class="py-3 px-2">Corporate</td>
+                                    <td class="py-3 px-2">P019033</td>
+                                    <td class="py-3 px-2">Rp 1.400.000</td>
+                                    <td class="py-3 px-2">16 April 2026</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="py-3 px-2 font-bold">Arbi Oktoryan</td>
+                                    <td class="py-3 px-2">Retail</td>
+                                    <td class="py-3 px-2">C002571</td>
+                                    <td class="py-3 px-2">Rp 409.000</td>
+                                    <td class="py-3 px-2">10 Mei 2026</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Bottom padding for scroll -->
+            <div class="h-6"></div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- Line Chart Configuration ---
+            const lineCtx = document.getElementById('lineChart').getContext('2d');
+            
+            // Data updated based on the target image
+            const lineData = [1000, 1300, 1560, 1820, 1970, 2120, 2980];
+            const labels = ['Nov 25', 'Des 25', 'Jan 25', 'Feb 25', 'Mar 25', 'Apr 25', 'Mei 25']; 
+
+            new Chart(lineCtx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Pelanggan',
+                        data: lineData,
+                        borderColor: '#1fb6ff', // Bright blue matching the design
+                        backgroundColor: 'transparent',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#1fb6ff',
+                        pointBorderColor: '#1fb6ff',
+                        pointBorderWidth: 1,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        tension: 0 // Straight lines between points
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false 
+                        },
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: '#fff',
+                            titleColor: '#333',
+                            bodyColor: '#666',
+                            borderColor: '#e5e7eb',
+                            borderWidth: 1,
+                            padding: 10,
+                            displayColors: false,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: true, 
+                            grid: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#9ca3af', // gray-400
+                                font: { size: 10 }
+                            }
+                        },
+                        y: {
+                            display: true, 
+                            min: 0,
+                            max: 3000, 
+                            grid: {
+                                display: true,
+                                color: '#f3f4f6', // Light gray grid lines
+                                drawBorder: false,
+                            },
+                            ticks: {
+                                stepSize: 500,
+                                color: '#9ca3af', // gray-400
+                                font: { size: 10 }
+                            },
+                            border: {
+                                display: false // hide the main vertical axis line
+                            }
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 10,
+                            bottom: 0
+                        }
+                    }
+                }
+            });
+
+            // --- Donut Chart Configuration ---
+            const donutCtx = document.getElementById('donutChart').getContext('2d');
+            
+            // Data roughly based on percentages in image: 37.5%, 12.5%, 12.5%, 37.5%
+            const donutData = [37.5, 12.5, 12.5, 37.5];
+            
+            // Colors updated to match the new image reference
+            const donutColors = [
+                '#64d165', // Internet Down (Blue)
+                '#aee82e', // Wifi Bermasalah (Yellow)
+                '#fdc206', // Koneksi Putus (Red)
+                '#232d43'  // Kendala Akses Web (Purple)
+            ];
+
+            new Chart(donutCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Internet Down', 'Wifi Bermasalah', 'Koneksi Putus', 'Kendala Akses Web'],
+                    datasets: [{
+                        data: donutData,
+                        backgroundColor: donutColors,
+                        borderWidth: 0, // No borders between segments
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%', // Thickness of the donut
+                    plugins: {
+                        legend: {
+                            display: false // We use custom HTML legend
+                        },
+                        tooltip: {
+                            enabled: true,
+                            callbacks: {
+                                label: function(context) {
+                                    return ' ' + context.label + ': ' + context.parsed + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
